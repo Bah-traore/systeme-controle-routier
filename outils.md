@@ -26,7 +26,7 @@ Assurez-vous de disposer des outils suivants sur votre machine avant de lancer l
 **Cloner le dépôt :**
 ```bash
 git clone [https://github.com/votre-utilisateur/controle-routier.git](https://github.com/votre-utilisateur/controle-routier.git)
-cd controle-routier
+cd controle-routier ```
 
 
 ### 3. configurer le backend python
