@@ -27,3 +27,25 @@ Assurez-vous de disposer des outils suivants sur votre machine avant de lancer l
 ```bash
 git clone [https://github.com/votre-utilisateur/controle-routier.git](https://github.com/votre-utilisateur/controle-routier.git)
 cd controle-routier
+
+
+### 3. configurer le backend python
+```bash
+cd backend/python
+python -m venv venv
+source venv/bin/activate  # Sous Windows : venv\Scripts\activate
+pip install -r requirements.txt
+
+
+### 3. configurer le backend rust
+```bash
+cd ../rust
+cargo build --release
+
+
+### 4. configurer le frontend react 
+```bash
+cd ../../frontend
+npm install
+npm run dev
+
