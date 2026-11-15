@@ -1,7 +1,7 @@
 # systeme-controle-routier
 Une solution open source (état) pour les agents de contrôle routier. Gestion des infractions, vérification des documents et suivi des interventions.
 
-.outils.md
+./outils.md
 
 ### Contrôle Routier - Projet Open Source
 ## À propos du projet
