@@ -63,23 +63,29 @@ Assurez-vous de disposer des outils suivants sur votre machine avant de lancer l
 * **Backend Python :** Python `3.12+` et `pip` (ou `poetry` / `uv`)
 * **Backend Rust :** Rust `1.85+` (édition 2024) et `Cargo` (installables via `rustup`)
 * **Frontend React :** Node.js `20 LTS` ou `22+` avec `npm`, `yarn` ou `pnpm`
-* **Base de données :** PostgreSQL `15+` (ou SQLite pour les tests locaux)
+* **Base de données :** SQLite + SpatiaLite en développement ; PostgreSQL `15+` + PostGIS en production
 
 ### 2. Installation rapide
 
 **Cloner le dépôt :**
 ```bash
-git clone https://github.com/votre-utilisateur/controle-routier.git
-cd controle-routier
+git clone https://github.com/Bah-traore/systeme-controle-routier.git
+cd systeme-controle-routier
 ```
 
 **Configurer le Backend (Python) :**
 ```bash
-cd backend/python
+cd backend/py-thon
 python -m venv venv
 source venv/bin/activate  # Sous Windows : venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r ../../requirements.txt
+if [ ! -f .env ]; then cp .env.example .env; fi
+python -c "from secrets import token_urlsafe; print(token_urlsafe(64))"
 ```
+
+Remplacez `SECRET_KEY` dans `.env` par la clé générée. SQLite est configuré par défaut avec SpatiaLite pour les zones géographiques ; installez la bibliothèque système `mod_spatialite` (paquet `libsqlite3-mod-spatialite` sur Debian/Ubuntu). Redis doit également être disponible pour le cache, les sessions, les tâches Celery et Channels configurés dans `.env`.
+
+En production, sélectionnez `config.settings.prod`, fournissez une `DATABASE_URL` PostgreSQL/PostGIS, une `SECRET_KEY` aléatoire, les vrais domaines dans `ALLOWED_HOSTS` et `CORS_ALLOWED_ORIGINS`, puis activez `SECURE_SSL_REDIRECT=True`. Les réglages de production refusent les origines localhost et une redirection HTTPS désactivée.
 
 **Compiler les modules Rust :**
 ```bash
